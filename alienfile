@@ -1,11 +1,24 @@
 use alienfile;
-plugin 'PkgConfig' => 'libfoo';
+
+plugin 'Probe::CommandLine' => (
+  command => 'unzip',
+  args    => [ '-v' ],
+  match   => qr/UnZip.*Info-ZIP/,
+  version => qr/UnZip ([0-9\.]+)/,
+);
+
 share {
+
+
   plugin Download => (
-    url => 'http://...',
-    filter => qr/*\.tar\.gz$/,
-    version => qr/([0-9\.]+)/,
+    url => 'ftp://ftp.info-zip.org/pub/infozip/src/unzip60.tgz',
   );
+
   plugin Extract => 'tar.gz';
-  plugin 'Build::Autoconf';
+
+  build [
+    [ '%{make}', -f => 'unix/Makefile', 'generic', 'prefix=%{.install.prefix}' ],
+    [ '%{make}', -f => 'unix/Makefile', 'install', 'prefix=%{.install.prefix}' ],
+  ];
+
 }

@@ -11,7 +11,8 @@ share {
 
 
   plugin Download => (
-    url => 'ftp://ftp.info-zip.org/pub/infozip/src/unzip60.tgz',
+    #url => 'ftp://ftp.info-zip.org/pub/infozip/src/unzip60.tgz',
+    url => 'https://sourceforge.net/projects/infozip/files/UnZip%206.x%20%28latest%29/UnZip%206.0/unzip60.tar.gz',
   );
 
   plugin Extract => 'tar.gz';

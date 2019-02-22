@@ -20,16 +20,16 @@ share {
   if($^O eq 'MSWin32')
   {
     meta->before_hook(build => sub {
-	  my($build) = @_;
-	  my $prefix = $build->install_prop->{prefix};
-	  $prefix =~ s{/}{\\}g;
-	  meta->interpolator->add_helper(prefix_win => sub { $prefix });
-	});
-	
+      my($build) = @_;
+      my $prefix = $build->install_prop->{prefix};
+      $prefix =~ s{/}{\\}g;
+        meta->interpolator->add_helper(prefix_win => sub { $prefix });
+    });
+
     build [
       [ '%{make}', -f => 'win32/Makefile.gcc' ],
-	  [ 'mkdir', '%{prefix_win}\\bin' ],
-	  'copy *.exe %{prefix_win}\\bin',
+      [ 'mkdir', '%{prefix_win}\\bin' ],
+      'copy *.exe %{prefix_win}\\bin',
     ];
   }
   else

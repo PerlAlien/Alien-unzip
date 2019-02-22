@@ -26,6 +26,8 @@ share {
         meta->interpolator->add_helper(prefix_win => sub { $prefix });
     });
 
+    plugin 'Build::Make' => 'gmake';
+
     build [
       [ '%{make}', -f => 'win32/Makefile.gcc' ],
       [ 'mkdir', '%{prefix_win}\\bin' ],

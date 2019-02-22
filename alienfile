@@ -17,9 +17,27 @@ share {
 
   plugin Extract => 'tar.gz';
 
-  build [
-    [ '%{make}', -f => 'unix/Makefile', 'generic', 'prefix=%{.install.prefix}' ],
-    [ '%{make}', -f => 'unix/Makefile', 'install', 'prefix=%{.install.prefix}' ],
-  ];
+  if($^O eq 'MSWin32')
+  {
+    meta->before_hook(build => sub {
+	  my($build) = @_;
+	  my $prefix = $build->install_prop->{prefix};
+	  $prefix =~ s{/}{\\}g;
+	  meta->interpolator->add_helper(prefix_win => sub { $prefix });
+	});
+	
+    build [
+      [ '%{make}', -f => 'win32/Makefile.gcc' ],
+	  [ 'mkdir', '%{prefix_win}\\bin' ],
+	  'copy *.exe %{prefix_win}\\bin',
+    ];
+  }
+  else
+  {
+    build [
+      [ '%{make}', -f => 'unix/Makefile', 'generic', 'prefix=%{.install.prefix}' ],
+      [ '%{make}', -f => 'unix/Makefile', 'install', 'prefix=%{.install.prefix}' ],
+    ];
+  }
 
 }

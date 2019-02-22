@@ -29,7 +29,7 @@ share {
     plugin 'Build::Make' => 'gmake';
 
     build [
-      [ '%{make}', -f => 'win32/Makefile.gcc' ],
+      [ '%{make}', -f => 'win32/Makefile.gcc', 'CC_CPU_OPT=', 'NOASM=1' ],
       [ 'mkdir', '%{prefix_win}\\bin' ],
       'copy *.exe %{prefix_win}\\bin',
     ];

@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Switch to a more reliable mirror for Info-ZIP unzip
 
 0.02      2019-02-22 14:20:30 -0500
   - Build fixes for older Perls on Windows

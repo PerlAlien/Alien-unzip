@@ -1,14 +1,16 @@
-# Alien::unzip [![Build Status](https://secure.travis-ci.org/Perl5-Alien/Alien-unzip.png)](http://travis-ci.org/Perl5-Alien/Alien-unzip)
+# Alien::unzip [![Build Status](https://travis-ci.org/PerlAlien/Alien-unzip.svg)](http://travis-ci.org/PerlAlien/Alien-unzip)
 
 Find or build Info-ZIP unzip
 
 # SYNOPSIS
 
-    use Alien::unzip
-    use Env qw( @PATH );
+```perl
+use Alien::unzip
+use Env qw( @PATH );
 
-    # Add unzip to the PATH if it isn't there already
-    push @PATH, Alien::unzip->bin_dir;
+# Add unzip to the PATH if it isn't there already
+push @PATH, Alien::unzip->bin_dir;
+```
 
 # DESCRIPTION
 

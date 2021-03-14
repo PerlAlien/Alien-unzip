@@ -1,4 +1,4 @@
-# Alien::unzip [![Build Status](https://travis-ci.org/PerlAlien/Alien-unzip.svg)](http://travis-ci.org/PerlAlien/Alien-unzip)
+# Alien::unzip ![linux](https://github.com/PerlAlien/Alien-unzip/workflows/linux/badge.svg)
 
 Find or build Info-ZIP unzip
 

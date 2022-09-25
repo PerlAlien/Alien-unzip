@@ -1,4 +1,5 @@
 use alienfile;
+use Config;
 
 plugin 'Probe::CommandLine' => (
   command => 'unzip',
@@ -28,6 +29,11 @@ share {
     });
 
     plugin 'Build::Make' => 'gmake';
+
+    if($Config{ptrsize} == 4)
+    {
+      patch [ 'patch --binary -p1 < %{.install.patch}/windows-32-bit.diff' ];
+    }
 
     build [
       [ '%{make}', -f => 'win32/Makefile.gcc', 'CC_CPU_OPT=', 'NOASM=1' ],
